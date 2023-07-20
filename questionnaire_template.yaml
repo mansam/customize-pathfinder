@@ -1,679 +1,678 @@
-    categories:
-        - title: Application details
-          order: 1
-          questions:
-            - name: ""
-              order: 1
-              question: Does the application development team understand and actively develop the application?
-              description: How much knowledge does the team have about the application's development or usage?
-              options:
-                - option: Maintenance mode, no SME knowledge or adequate documentation available
-                  order: 2
-                  risk: RED
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: 'Little knowledge, no development (example: third-party or commercial off-the-shelf application)'
-                  order: 1
-                  risk: RED
-                - option: Maintenance mode, SME knowledge is available
-                  order: 3
-                  risk: AMBER
-                - option: Actively developed, SME knowledge is available
-                  order: 4
-                  risk: GREEN
-                - option: Greenfield application
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 2
-              question: How is the application supported in production?
-              description: Does the team have sufficient knowledge to support the application in production?
-              options:
-                - option: Multiple teams provide support using an established escalation model
-                  order: 3
-                  risk: AMBER
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: External support provider with a ticket-driven escalation process; no inhouse support resources
-                  order: 1
-                  risk: RED
-                - option: Separate internal support team, separate from the development team, with little interaction between the teams
-                  order: 2
-                  risk: RED
-                - option: SRE (Site Reliability Engineering) approach with a knowledgeable and experienced operations team
-                  order: 4
-                  risk: GREEN
-                - option: DevOps approach with the same team building the application and supporting it in production
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 3
-              question: How much time passes from when code is committed until the application is deployed to production?
-              description: What is the development latency?
-              options:
-                - option: 2-6 months
-                  order: 3
-                  risk: AMBER
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Not tracked
-                  order: 1
-                  risk: RED
-                - option: More than 6 months
-                  order: 2
-                  risk: RED
-                - option: 8-30 days
-                  order: 4
-                  risk: GREEN
-                - option: 1-7 days
-                  order: 5
-                  risk: GREEN
-                - option: Less than 1 day
-                  order: 6
-                  risk: GREEN
-            - name: ""
-              order: 4
-              question: How often is the application deployed to production?
-              description: Deployment frequency
-              options:
-                - option: Between once a month and once every 6 months
-                  order: 3
-                  risk: AMBER
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Not tracked
-                  order: 1
-                  risk: RED
-                - option: Less than once every 6 months
-                  order: 2
-                  risk: RED
-                - option: Weekly
-                  order: 4
-                  risk: GREEN
-                - option: Daily
-                  order: 5
-                  risk: GREEN
-                - option: Several times a day
-                  order: 6
-                  risk: GREEN
-            - name: ""
-              order: 5
-              question: What is the application's mean time to recover (MTTR) from failure in a production environment?
-              description: Average time for the application to recover from failure
-              options:
-                - option: Less than 1 hour
-                  order: 5
-                  risk: GREEN
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Not tracked
-                  order: 1
-                  risk: RED
-                - option: 1-7 days
-                  order: 3
-                  risk: AMBER
-                - option: 1 month or more
-                  order: 2
-                  risk: RED
-                - option: 1-24 hours
-                  order: 4
-                  risk: GREEN
-            - name: ""
-              order: 6
-              question: Does the application have legal and/or licensing requirements?
-              description: 'Legal and licensing requirements must be assessed to determine their possible impact (cost, fault reporting) on the container platform hosting the application. Examples of legal requirements: isolated clusters, certifications, compliance with the Payment Card Industry Data Security Standard or the Health Insurance Portability and Accountability Act. Examples of licensing requirements: per server, per CPU.'
-              options:
-                - option: Multiple legal and licensing requirements
-                  order: 1
-                  risk: RED
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: 'Licensing requirements (examples: per server, per CPU)'
-                  order: 2
-                  risk: RED
-                - option: 'Legal requirements (examples: cluster isolation, hardware, PCI or HIPAA compliance)'
-                  order: 3
-                  risk: AMBER
-                - option: None
-                  order: 4
-                  risk: GREEN
-            - name: ""
-              order: 7
-              question: Which model best describes the application architecture?
-              description: Describe the application architecture in simple terms.
-              options:
-                - option: Complex monolith, strict runtime dependency startup order, non-resilient architecture
-                  order: 3
-                  risk: AMBER
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Independently deployable components
-                  order: 5
-                  risk: GREEN
-                - option: Massive monolith (high memory and CPU usage), singleton deployment, vertical scale only
-                  order: 1
-                  risk: AMBER
-                - option: Massive monolith (high memory and CPU usage), non-singleton deployment, complex to scale horizontally
-                  order: 2
-                  risk: AMBER
-                - option: 'Resilient monolith (examples: retries, circuit breakers)'
-                  order: 4
-                  risk: GREEN
-        - title: Application dependencies
-          order: 2
-          questions:
-            - name: ""
-              order: 1
-              question: Does the application require specific hardware?
-              description: OpenShift Container Platform runs only on x86, IBM Power, or IBM Z systems
-              options:
-                - option: 'Requires specific computer hardware (examples: GPUs, RAM, HDDs)'
-                  order: 3
-                  risk: AMBER
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Requires CPU that is not supported by Red Hat
-                  order: 1
-                  risk: RED
-                - option: 'Requires custom or legacy hardware (example: USB device)'
-                  order: 2
-                  risk: RED
-                - option: Requires CPU that is supported by Red Hat
-                  order: 4
-                  risk: GREEN
-            - name: ""
-              order: 2
-              question: What operating system does the application require?
-              description: Only Linux and certain Microsoft Windows versions are supported in containers. Check the latest versions and requirements.
-              options:
-                - option: Microsoft Windows
-                  order: 4
-                  risk: AMBER
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: 'Operating system that is not compatible with OpenShift Container Platform (examples: OS X, AIX, Unix, Solaris)'
-                  order: 1
-                  risk: RED
-                - option: Linux with custom kernel drivers or a specific kernel version
-                  order: 2
-                  risk: RED
-                - option: 'Linux with custom capabilities (examples: seccomp, root access)'
-                  order: 3
-                  risk: AMBER
-                - option: Standard Linux distribution
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 3
-              question: Does the vendor provide support for a third-party component running in a container?
-              description: Will the vendor support a component if you run it in a container?
-              options:
-                - option: No vendor support for containers
-                  order: 2
-                  risk: RED
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Not recommended to run the component in a container
-                  order: 1
-                  risk: RED
-                - option: 'Vendor supports containers but with limitations (examples: functionality is restricted, component has not been tested)'
-                  order: 3
-                  risk: AMBER
-                - option: Vendor supports their application running in containers but you must build your own images
-                  order: 4
-                  risk: AMBER
-                - option: Vendor fully supports containers, provides certified images
-                  order: 5
-                  risk: GREEN
-                - option: No third-party components required
-                  order: 6
-                  risk: GREEN
-            - name: ""
-              order: 4
-              question: Incoming/northbound dependencies
-              description: Systems or applications that call the application
-              options:
-                - option: Many dependencies exist, can be changed because the systems are internally managed
-                  order: 3
-                  risk: GREEN
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Internal dependencies only
-                  order: 4
-                  risk: GREEN
-                - option: Dependencies are difficult or expensive to change because they are legacy or third-party
-                  order: 1
-                  risk: RED
-                - option: Many dependencies exist, can be changed but the process is expensive and time-consuming
-                  order: 2
-                  risk: AMBER
-                - option: No incoming/northbound dependencies
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 5
-              question: Outgoing/southbound dependencies
-              description: Systems or applications that the application calls
-              options:
-                - option: Application not ready until dependencies are verified available
-                  order: 3
-                  risk: AMBER
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Dependency availability only verified when application is processing traffic
-                  order: 1
-                  risk: RED
-                - option: Dependencies require a complex and strict startup order
-                  order: 2
-                  risk: AMBER
-                - option: Limited processing available if dependencies are unavailable
-                  order: 4
-                  risk: GREEN
-                - option: No outgoing/southbound dependencies
-                  order: 5
-                  risk: GREEN
-        - title: Application architecture
-          order: 3
-          questions:
-            - name: ""
-              order: 1
-              question: How resilient is the application? How well does it recover from outages and restarts?
-              description: If the application or one of its dependencies fails, how does the application recover from failure? Is manual intervention required?
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Application cannot be restarted cleanly after failure, requires manual intervention
-                  order: 1
-                  risk: RED
-                - option: Application fails when a soutbound dependency is unavailable and does not recover automatically
-                  order: 2
-                  risk: RED
-                - option: Application functionality is limited when a dependency is unavailable but recovers when the dependency is available
-                  order: 3
-                  risk: AMBER
-                - option: 'Application employs resilient architecture patterns (examples: circuit breakers, retry mechanisms)'
-                  order: 4
-                  risk: GREEN
-                - option: Application containers are randomly terminated to test resiliency; chaos engineering principles are followed
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 2
-              question: How does the external world communicate with the application?
-              description: What protocols do external clients use to communicate with the application?
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: 'Non-TCP/IP protocols (examples: serial, IPX, AppleTalk)'
-                  order: 1
-                  risk: RED
-                - option: TCP/IP, with host name or IP address encapsulated in the payload
-                  order: 2
-                  risk: RED
-                - option: 'TCP/UDP without host addressing (example: SSH)'
-                  order: 3
-                  risk: AMBER
-                - option: TCP/UDP encapsulated, using TLS with SNI header
-                  order: 4
-                  risk: GREEN
-                - option: HTTP/HTTPS
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 3
-              question: How does the application manage its internal state?
-              description: If the application must manage or retain an internal state, how is this done?
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: State maintained in non-shared, non-ephemeral storage
-                  order: 3
-                  risk: AMBER
-                - option: Application components use shared memory within a pod
-                  order: 1
-                  risk: AMBER
-                - option: 'State is managed externally by another product (examples: Zookeeper or Red Hat Data Grid)'
-                  order: 2
-                  risk: AMBER
-                - option: Disk shared between application instances
-                  order: 4
-                  risk: GREEN
-                - option: Stateless or ephemeral container storage
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 4
-              question: How does the application handle service discovery?
-              description: How does the application discover services?
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: 'Uses technologies that are not compatible with Kubernetes (examples: hardcoded IP addresses, custom cluster manager)'
-                  order: 1
-                  risk: RED
-                - option: Requires an application or cluster restart to discover new service instances
-                  order: 2
-                  risk: RED
-                - option: 'Uses technologies that are compatible with Kubernetes but require specific libraries or services (examples: HashiCorp Consul, Netflix Eureka)'
-                  order: 3
-                  risk: AMBER
-                - option: Uses Kubernetes DNS name resolution
-                  order: 4
-                  risk: GREEN
-                - option: Does not require service discovery
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 5
-              question: How is the application clustering managed?
-              description: Does the application require clusters? If so, how is clustering managed?
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: 'Manually configured clustering (example: static clusters)'
-                  order: 1
-                  risk: RED
-                - option: Managed by an external off-PaaS cluster manager
-                  order: 2
-                  risk: RED
-                - option: Managed by an application runtime that is compatible with Kubernetes
-                  order: 3
-                  risk: GREEN
-                - option: No cluster management required
-                  order: 4
-                  risk: GREEN
-        - title: Application observability
-          order: 4
-          questions:
-            - name: ""
-              order: 1
-              question: How does the application use logging and how are the logs accessed?
-              description: How the application logs are accessed
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Logs are unavailable or are internal with no way to export them
-                  order: 1
-                  risk: RED
-                - option: Logs are in a custom binary format, exposed with non-standard protocols
-                  order: 2
-                  risk: RED
-                - option: Logs are exposed using syslog
-                  order: 3
-                  risk: AMBER
-                - option: Logs are written to a file system, sometimes as multiple files
-                  order: 4
-                  risk: AMBER
-                - option: 'Logs are forwarded to an external logging system (example: Splunk)'
-                  order: 5
-                  risk: GREEN
-                - option: 'Logs are configurable (example: can be sent to stdout)'
-                  order: 6
-                  risk: GREEN
-            - name: ""
-              order: 2
-              question: Does the application provide metrics?
-              description: 'Are application metrics available, if necessary (example: OpenShift Container Platform collects CPU and memory metrics)?'
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: No metrics available
-                  order: 1
-                  risk: AMBER
-                - option: Metrics collected but not exposed externally
-                  order: 2
-                  risk: AMBER
-                - option: 'Metrics exposed using binary protocols (examples: SNMP, JMX)'
-                  order: 3
-                  risk: AMBER
-                - option: 'Metrics exposed using a third-party solution (examples: Dynatrace, AppDynamics)'
-                  order: 4
-                  risk: GREEN
-                - option: Metrics collected and exposed with built-in Prometheus endpoint support
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 3
-              question: How easy is it to determine the application's health and readiness to handle traffic?
-              description: How do we determine an application's health (liveness) and readiness to handle traffic?
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: No health or readiness query functionality available
-                  order: 1
-                  risk: RED
-                - option: Basic application health requires semi-complex scripting
-                  order: 3
-                  risk: AMBER
-                - option: Dedicated, independent liveness and readiness endpoints
-                  order: 4
-                  risk: GREEN
-                - option: Monitored and managed by a custom watchdog process
-                  order: 2
-                  risk: RED
-                - option: Health is verified by probes running synthetic transactions
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 4
-              question: What best describes the application's runtime characteristics?
-              description: 'How would the profile of an application appear during runtime (examples: graphs showing CPU and memory usage, traffic patterns, latency)? What are the implications for a serverless application?'
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Deterministic and predictable real-time execution or control requirements
-                  order: 1
-                  risk: RED
-                - option: 'Sensitive to latency (examples: voice applications, high frequency trading applications)'
-                  order: 2
-                  risk: AMBER
-                - option: Constant traffic with a broad range of CPU and memory usage
-                  order: 3
-                  risk: AMBER
-                - option: Intermittent traffic with predictable CPU and memory usage
-                  order: 4
-                  risk: GREEN
-                - option: Constant traffic with predictable CPU and memory usage
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 5
-              question: How long does it take the application to be ready to handle traffic?
-              description: How long the application takes to boot
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: More than 5 minutes
-                  order: 1
-                  risk: RED
-                - option: 2-5 minutes
-                  order: 2
-                  risk: AMBER
-                - option: 1-2 minutes
-                  order: 3
-                  risk: AMBER
-                - option: 10-60 seconds
-                  order: 4
-                  risk: GREEN
-                - option: Less than 10 seconds
-                  order: 5
-                  risk: GREEN
-        - title: Application cross-cutting concerns
-          order: 5
-          questions:
-            - name: ""
-              order: 1
-              question: How is the application tested?
-              description: 'Is the application is tested? Is it easy to test (example: automated testing)? Is it tested in production?'
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: No testing or minimal manual testing only
-                  order: 1
-                  risk: RED
-                - option: Minimal automated testing, focused on the user interface
-                  order: 2
-                  risk: AMBER
-                - option: Some automated unit and regression testing, basic CI/CD pipeline testing; modern test practices are not followed
-                  order: 3
-                  risk: AMBER
-                - option: 'Highly repeatable automated testing (examples: unit, integration, smoke tests) before deploying to production; modern test practices are followed'
-                  order: 4
-                  risk: GREEN
-                - option: 'Chaos engineering approach, constant testing in production (example: A/B testing + experimentation)'
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 2
-              question: How is the application configured?
-              description: How is the application configured? Is the configuration method appropriate for a container? External servers are runtime dependencies.
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Configuration files compiled during installation and configured using a user interface
-                  order: 1
-                  risk: RED
-                - option: 'Configuration files are stored externally (example: in a database) and accessed using specific environment keys (examples: host name, IP address)'
-                  order: 2
-                  risk: RED
-                - option: Multiple configuration files in multiple file system locations
-                  order: 3
-                  risk: AMBER
-                - option: Configuration files built into the application and enabled using system properties at runtime
-                  order: 4
-                  risk: AMBER
-                - option: 'Configuration retrieved from an external server (examples: Spring Cloud Config Server, HashiCorp Consul)'
-                  order: 5
-                  risk: AMBER
-                - option: Configuration loaded from files in a single configurable location; environment variables used
-                  order: 6
-                  risk: GREEN
-            - name: ""
-              order: 4
-              question: How is the application deployed?
-              description: How the application is deployed and whether the deployment process is suitable for a container platform
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Simple automated deployment scripts
-                  order: 3
-                  risk: AMBER
-                - option: Manual deployment using a user interface
-                  order: 1
-                  risk: RED
-                - option: Manual deployment with some automation
-                  order: 2
-                  risk: RED
-                - option: Automated deployment with manual intervention or complex promotion through pipeline stages
-                  order: 4
-                  risk: AMBER
-                - option: Automated deployment with a full CI/CD pipeline, minimal intervention for promotion through pipeline stages
-                  order: 5
-                  risk: GREEN
-                - option: Fully automated (GitOps), blue-green, or canary deployment
-                  order: 6
-                  risk: GREEN
-            - name: ""
-              order: 5
-              question: Where is the application deployed?
-              description: Where does the application run?
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Bare metal server
-                  order: 1
-                  risk: GREEN
-                - option: 'Virtual machine (examples: Red Hat Virtualization, VMware)'
-                  order: 2
-                  risk: GREEN
-                - option: 'Private cloud (example: Red Hat OpenStack Platform)'
-                  order: 3
-                  risk: GREEN
-                - option: 'Public cloud provider (examples: Amazon Web Services, Microsoft Azure, Google Cloud Platform)'
-                  order: 4
-                  risk: GREEN
-                - option: 'Platform as a service (examples: Heroku, Force.com, Google App Engine)'
-                  order: 5
-                  risk: AMBER
-                - option: Other. Specify in the comments field
-                  order: 7
-                  risk: AMBER
-                - option: Hybrid cloud (public and private cloud providers)
-                  order: 6
-                  risk: GREEN
-            - name: ""
-              order: 6
-              question: How mature is the containerization process, if any?
-              description: If the team has used containers in the past, how was it done?
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Application runs in a container on a laptop or desktop
-                  order: 1
-                  risk: RED
-                - option: Some experience with containers but not yet fully defined
-                  order: 3
-                  risk: AMBER
-                - option: 'Proficient with containers and container platforms (examples: Swarm, Kubernetes)'
-                  order: 4
-                  risk: GREEN
-                - option: Application containerization has not yet been attempted
-                  order: 5
-                  risk: GREEN
-            - name: ""
-              order: 3
-              question: How does the application acquire security keys or certificates?
-              description: How does the application retrieve credentials, keys, or certificates? External systems are runtime dependencies.
-              options:
-                - option: Unknown
-                  order: 0
-                  risk: UNKNOWN
-                - option: Hardware security modules or encryption devices
-                  order: 1
-                  risk: RED
-                - option: Keys/certificates bound to IP addresses and generated at runtime for each application instance
-                  order: 2
-                  risk: RED
-                - option: Keys/certificates compiled into the application
-                  order: 3
-                  risk: AMBER
-                - option: Loaded from a shared disk
-                  order: 4
-                  risk: AMBER
-                - option: 'Retrieved from an external server (examples: HashiCorp Vault, CyberArk Conjur)'
-                  order: 5
-                  risk: AMBER
-                - option: Loaded from files
-                  order: 6
-                  risk: GREEN
-                - option: Not required
-                  order: 7
-                  risk: GREEN
-
+categories:
+  - title: Application details
+    order: 1
+    questions:
+      - name: "DEVOWNER"
+        order: 1
+        question: Does the application development team understand and actively develop the application?
+        description: How much knowledge does the team have about the application's development or usage?
+        options:
+          - option: Maintenance mode, no SME knowledge or adequate documentation available
+            order: 2
+            risk: RED
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: 'Little knowledge, no development (example: third-party or commercial off-the-shelf application)'
+            order: 1
+            risk: RED
+          - option: Maintenance mode, SME knowledge is available
+            order: 3
+            risk: AMBER
+          - option: Actively developed, SME knowledge is available
+            order: 4
+            risk: GREEN
+          - option: Greenfield application
+            order: 5
+            risk: GREEN
+      - name: "OPSOWNER"
+        order: 2
+        question: How is the application supported in production?
+        description: Does the team have sufficient knowledge to support the application in production?
+        options:
+          - option: Multiple teams provide support using an established escalation model
+            order: 3
+            risk: AMBER
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: External support provider with a ticket-driven escalation process; no inhouse support resources
+            order: 1
+            risk: RED
+          - option: Separate internal support team, separate from the development team, with little interaction between the teams
+            order: 2
+            risk: RED
+          - option: SRE (Site Reliability Engineering) approach with a knowledgeable and experienced operations team
+            order: 4
+            risk: GREEN
+          - option: DevOps approach with the same team building the application and supporting it in production
+            order: 5
+            risk: GREEN
+      - name: "LEADTIME"
+        order: 3
+        question: How much time passes from when code is committed until the application is deployed to production?
+        description: What is the development latency?
+        options:
+          - option: 2-6 months
+            order: 3
+            risk: AMBER
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Not tracked
+            order: 1
+            risk: RED
+          - option: More than 6 months
+            order: 2
+            risk: RED
+          - option: 8-30 days
+            order: 4
+            risk: GREEN
+          - option: 1-7 days
+            order: 5
+            risk: GREEN
+          - option: Less than 1 day
+            order: 6
+            risk: GREEN
+      - name: "DEPLOYFREQ"
+        order: 4
+        question: How often is the application deployed to production?
+        description: Deployment frequency
+        options:
+          - option: Between once a month and once every 6 months
+            order: 3
+            risk: AMBER
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Not tracked
+            order: 1
+            risk: RED
+          - option: Less than once every 6 months
+            order: 2
+            risk: RED
+          - option: Weekly
+            order: 4
+            risk: GREEN
+          - option: Daily
+            order: 5
+            risk: GREEN
+          - option: Several times a day
+            order: 6
+            risk: GREEN
+      - name: "MTTR"
+        order: 5
+        question: What is the application's mean time to recover (MTTR) from failure in a production environment?
+        description: Average time for the application to recover from failure
+        options:
+          - option: Less than 1 hour
+            order: 5
+            risk: GREEN
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Not tracked
+            order: 1
+            risk: RED
+          - option: 1-7 days
+            order: 3
+            risk: AMBER
+          - option: 1 month or more
+            order: 2
+            risk: RED
+          - option: 1-24 hours
+            order: 4
+            risk: GREEN
+      - name: "COMPLIANCE"
+        order: 6
+        question: Does the application have legal and/or licensing requirements?
+        description: 'Legal and licensing requirements must be assessed to determine their possible impact (cost, fault reporting) on the container platform hosting the application. Examples of legal requirements: isolated clusters, certifications, compliance with the Payment Card Industry Data Security Standard or the Health Insurance Portability and Accountability Act. Examples of licensing requirements: per server, per CPU.'
+        options:
+          - option: Multiple legal and licensing requirements
+            order: 1
+            risk: RED
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: 'Licensing requirements (examples: per server, per CPU)'
+            order: 2
+            risk: RED
+          - option: 'Legal requirements (examples: cluster isolation, hardware, PCI or HIPAA compliance)'
+            order: 3
+            risk: AMBER
+          - option: None
+            order: 4
+            risk: GREEN
+      - name: "ARCHTYPE"
+        order: 7
+        question: Which model best describes the application architecture?
+        description: Describe the application architecture in simple terms.
+        options:
+          - option: Complex monolith, strict runtime dependency startup order, non-resilient architecture
+            order: 3
+            risk: AMBER
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Independently deployable components
+            order: 5
+            risk: GREEN
+          - option: Massive monolith (high memory and CPU usage), singleton deployment, vertical scale only
+            order: 1
+            risk: AMBER
+          - option: Massive monolith (high memory and CPU usage), non-singleton deployment, complex to scale horizontally
+            order: 2
+            risk: AMBER
+          - option: 'Resilient monolith (examples: retries, circuit breakers)'
+            order: 4
+            risk: GREEN
+  - title: Application dependencies
+    order: 2
+    questions:
+      - name: "DEPSHW"
+        order: 1
+        question: Does the application require specific hardware?
+        description: OpenShift Container Platform runs only on x86, IBM Power, or IBM Z systems
+        options:
+          - option: 'Requires specific computer hardware (examples: GPUs, RAM, HDDs)'
+            order: 3
+            risk: AMBER
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Requires CPU that is not supported by Red Hat
+            order: 1
+            risk: RED
+          - option: 'Requires custom or legacy hardware (example: USB device)'
+            order: 2
+            risk: RED
+          - option: Requires CPU that is supported by Red Hat
+            order: 4
+            risk: GREEN
+      - name: "DEPSOS"
+        order: 2
+        question: What operating system does the application require?
+        description: Only Linux and certain Microsoft Windows versions are supported in containers. Check the latest versions and requirements.
+        options:
+          - option: Microsoft Windows
+            order: 4
+            risk: AMBER
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: 'Operating system that is not compatible with OpenShift Container Platform (examples: OS X, AIX, Unix, Solaris)'
+            order: 1
+            risk: RED
+          - option: Linux with custom kernel drivers or a specific kernel version
+            order: 2
+            risk: RED
+          - option: 'Linux with custom capabilities (examples: seccomp, root access)'
+            order: 3
+            risk: AMBER
+          - option: Standard Linux distribution
+            order: 5
+            risk: GREEN
+      - name: "DEPS3RD"
+        order: 3
+        question: Does the vendor provide support for a third-party component running in a container?
+        description: Will the vendor support a component if you run it in a container?
+        options:
+          - option: No vendor support for containers
+            order: 2
+            risk: RED
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Not recommended to run the component in a container
+            order: 1
+            risk: RED
+          - option: 'Vendor supports containers but with limitations (examples: functionality is restricted, component has not been tested)'
+            order: 3
+            risk: AMBER
+          - option: Vendor supports their application running in containers but you must build your own images
+            order: 4
+            risk: AMBER
+          - option: Vendor fully supports containers, provides certified images
+            order: 5
+            risk: GREEN
+          - option: No third-party components required
+            order: 6
+            risk: GREEN
+      - name: "DEPSOUT"
+        order: 4
+        question: Incoming/northbound dependencies
+        description: Systems or applications that call the application
+        options:
+          - option: Many dependencies exist, can be changed because the systems are internally managed
+            order: 3
+            risk: GREEN
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Internal dependencies only
+            order: 4
+            risk: GREEN
+          - option: Dependencies are difficult or expensive to change because they are legacy or third-party
+            order: 1
+            risk: RED
+          - option: Many dependencies exist, can be changed but the process is expensive and time-consuming
+            order: 2
+            risk: AMBER
+          - option: No incoming/northbound dependencies
+            order: 5
+            risk: GREEN
+      - name: "DEPSIN"
+        order: 5
+        question: Outgoing/southbound dependencies
+        description: Systems or applications that the application calls
+        options:
+          - option: Application not ready until dependencies are verified available
+            order: 3
+            risk: AMBER
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Dependency availability only verified when application is processing traffic
+            order: 1
+            risk: RED
+          - option: Dependencies require a complex and strict startup order
+            order: 2
+            risk: AMBER
+          - option: Limited processing available if dependencies are unavailable
+            order: 4
+            risk: GREEN
+          - option: No outgoing/southbound dependencies
+            order: 5
+            risk: GREEN
+  - title: Application architecture
+    order: 3
+    questions:
+      - name: "RESILIENCY"
+        order: 1
+        question: How resilient is the application? How well does it recover from outages and restarts?
+        description: If the application or one of its dependencies fails, how does the application recover from failure? Is manual intervention required?
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Application cannot be restarted cleanly after failure, requires manual intervention
+            order: 1
+            risk: RED
+          - option: Application fails when a soutbound dependency is unavailable and does not recover automatically
+            order: 2
+            risk: RED
+          - option: Application functionality is limited when a dependency is unavailable but recovers when the dependency is available
+            order: 3
+            risk: AMBER
+          - option: 'Application employs resilient architecture patterns (examples: circuit breakers, retry mechanisms)'
+            order: 4
+            risk: GREEN
+          - option: Application containers are randomly terminated to test resiliency; chaos engineering principles are followed
+            order: 5
+            risk: GREEN
+      - name: "COMMS"
+        order: 2
+        question: How does the external world communicate with the application?
+        description: What protocols do external clients use to communicate with the application?
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: 'Non-TCP/IP protocols (examples: serial, IPX, AppleTalk)'
+            order: 1
+            risk: RED
+          - option: TCP/IP, with host name or IP address encapsulated in the payload
+            order: 2
+            risk: RED
+          - option: 'TCP/UDP without host addressing (example: SSH)'
+            order: 3
+            risk: AMBER
+          - option: TCP/UDP encapsulated, using TLS with SNI header
+            order: 4
+            risk: GREEN
+          - option: HTTP/HTTPS
+            order: 5
+            risk: GREEN
+      - name: "STATE"
+        order: 3
+        question: How does the application manage its internal state?
+        description: If the application must manage or retain an internal state, how is this done?
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: State maintained in non-shared, non-ephemeral storage
+            order: 3
+            risk: AMBER
+          - option: Application components use shared memory within a pod
+            order: 1
+            risk: AMBER
+          - option: 'State is managed externally by another product (examples: Zookeeper or Red Hat Data Grid)'
+            order: 2
+            risk: AMBER
+          - option: Disk shared between application instances
+            order: 4
+            risk: GREEN
+          - option: Stateless or ephemeral container storage
+            order: 5
+            risk: GREEN
+      - name: "HA"
+        order: 4
+        question: How does the application handle service discovery?
+        description: How does the application discover services?
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: 'Uses technologies that are not compatible with Kubernetes (examples: hardcoded IP addresses, custom cluster manager)'
+            order: 1
+            risk: RED
+          - option: Requires an application or cluster restart to discover new service instances
+            order: 2
+            risk: RED
+          - option: 'Uses technologies that are compatible with Kubernetes but require specific libraries or services (examples: HashiCorp Consul, Netflix Eureka)'
+            order: 3
+            risk: AMBER
+          - option: Uses Kubernetes DNS name resolution
+            order: 4
+            risk: GREEN
+          - option: Does not require service discovery
+            order: 5
+            risk: GREEN
+      - name: "CLUSTER"
+        order: 5
+        question: How is the application clustering managed?
+        description: Does the application require clusters? If so, how is clustering managed?
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: 'Manually configured clustering (example: static clusters)'
+            order: 1
+            risk: RED
+          - option: Managed by an external off-PaaS cluster manager
+            order: 2
+            risk: RED
+          - option: Managed by an application runtime that is compatible with Kubernetes
+            order: 3
+            risk: GREEN
+          - option: No cluster management required
+            order: 4
+            risk: GREEN
+  - title: Application observability
+    order: 4
+    questions:
+      - name: "LOGS"
+        order: 1
+        question: How does the application use logging and how are the logs accessed?
+        description: How the application logs are accessed
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Logs are unavailable or are internal with no way to export them
+            order: 1
+            risk: RED
+          - option: Logs are in a custom binary format, exposed with non-standard protocols
+            order: 2
+            risk: RED
+          - option: Logs are exposed using syslog
+            order: 3
+            risk: AMBER
+          - option: Logs are written to a file system, sometimes as multiple files
+            order: 4
+            risk: AMBER
+          - option: 'Logs are forwarded to an external logging system (example: Splunk)'
+            order: 5
+            risk: GREEN
+          - option: 'Logs are configurable (example: can be sent to stdout)'
+            order: 6
+            risk: GREEN
+      - name: "METRICS"
+        order: 2
+        question: Does the application provide metrics?
+        description: 'Are application metrics available, if necessary (example: OpenShift Container Platform collects CPU and memory metrics)?'
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: No metrics available
+            order: 1
+            risk: AMBER
+          - option: Metrics collected but not exposed externally
+            order: 2
+            risk: AMBER
+          - option: 'Metrics exposed using binary protocols (examples: SNMP, JMX)'
+            order: 3
+            risk: AMBER
+          - option: 'Metrics exposed using a third-party solution (examples: Dynatrace, AppDynamics)'
+            order: 4
+            risk: GREEN
+          - option: Metrics collected and exposed with built-in Prometheus endpoint support
+            order: 5
+            risk: GREEN
+      - name: "HEALTH"
+        order: 3
+        question: How easy is it to determine the application's health and readiness to handle traffic?
+        description: How do we determine an application's health (liveness) and readiness to handle traffic?
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: No health or readiness query functionality available
+            order: 1
+            risk: RED
+          - option: Basic application health requires semi-complex scripting
+            order: 3
+            risk: AMBER
+          - option: Dedicated, independent liveness and readiness endpoints
+            order: 4
+            risk: GREEN
+          - option: Monitored and managed by a custom watchdog process
+            order: 2
+            risk: RED
+          - option: Health is verified by probes running synthetic transactions
+            order: 5
+            risk: GREEN
+      - name: "PROFILE"
+        order: 4
+        question: What best describes the application's runtime characteristics?
+        description: 'How would the profile of an application appear during runtime (examples: graphs showing CPU and memory usage, traffic patterns, latency)? What are the implications for a serverless application?'
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Deterministic and predictable real-time execution or control requirements
+            order: 1
+            risk: RED
+          - option: 'Sensitive to latency (examples: voice applications, high frequency trading applications)'
+            order: 2
+            risk: AMBER
+          - option: Constant traffic with a broad range of CPU and memory usage
+            order: 3
+            risk: AMBER
+          - option: Intermittent traffic with predictable CPU and memory usage
+            order: 4
+            risk: GREEN
+          - option: Constant traffic with predictable CPU and memory usage
+            order: 5
+            risk: GREEN
+      - name: "STARTUPTIME"
+        order: 5
+        question: How long does it take the application to be ready to handle traffic?
+        description: How long the application takes to boot
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: More than 5 minutes
+            order: 1
+            risk: RED
+          - option: 2-5 minutes
+            order: 2
+            risk: AMBER
+          - option: 1-2 minutes
+            order: 3
+            risk: AMBER
+          - option: 10-60 seconds
+            order: 4
+            risk: GREEN
+          - option: Less than 10 seconds
+            order: 5
+            risk: GREEN
+  - title: Application cross-cutting concerns
+    order: 5
+    questions:
+      - name: "TEST"
+        order: 1
+        question: How is the application tested?
+        description: 'Is the application is tested? Is it easy to test (example: automated testing)? Is it tested in production?'
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: No testing or minimal manual testing only
+            order: 1
+            risk: RED
+          - option: Minimal automated testing, focused on the user interface
+            order: 2
+            risk: AMBER
+          - option: Some automated unit and regression testing, basic CI/CD pipeline testing; modern test practices are not followed
+            order: 3
+            risk: AMBER
+          - option: 'Highly repeatable automated testing (examples: unit, integration, smoke tests) before deploying to production; modern test practices are followed'
+            order: 4
+            risk: GREEN
+          - option: 'Chaos engineering approach, constant testing in production (example: A/B testing + experimentation)'
+            order: 5
+            risk: GREEN
+      - name: "CONFIG"
+        order: 2
+        question: How is the application configured?
+        description: How is the application configured? Is the configuration method appropriate for a container? External servers are runtime dependencies.
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Configuration files compiled during installation and configured using a user interface
+            order: 1
+            risk: RED
+          - option: 'Configuration files are stored externally (example: in a database) and accessed using specific environment keys (examples: host name, IP address)'
+            order: 2
+            risk: RED
+          - option: Multiple configuration files in multiple file system locations
+            order: 3
+            risk: AMBER
+          - option: Configuration files built into the application and enabled using system properties at runtime
+            order: 4
+            risk: AMBER
+          - option: 'Configuration retrieved from an external server (examples: Spring Cloud Config Server, HashiCorp Consul)'
+            order: 5
+            risk: AMBER
+          - option: Configuration loaded from files in a single configurable location; environment variables used
+            order: 6
+            risk: GREEN
+      - name: "DEPLOY"
+        order: 4
+        question: How is the application deployed?
+        description: How the application is deployed and whether the deployment process is suitable for a container platform
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Simple automated deployment scripts
+            order: 3
+            risk: AMBER
+          - option: Manual deployment using a user interface
+            order: 1
+            risk: RED
+          - option: Manual deployment with some automation
+            order: 2
+            risk: RED
+          - option: Automated deployment with manual intervention or complex promotion through pipeline stages
+            order: 4
+            risk: AMBER
+          - option: Automated deployment with a full CI/CD pipeline, minimal intervention for promotion through pipeline stages
+            order: 5
+            risk: GREEN
+          - option: Fully automated (GitOps), blue-green, or canary deployment
+            order: 6
+            risk: GREEN
+      - name: "CURRHOST"
+        order: 5
+        question: Where is the application deployed?
+        description: Where does the application run?
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Bare metal server
+            order: 1
+            risk: GREEN
+          - option: 'Virtual machine (examples: Red Hat Virtualization, VMware)'
+            order: 2
+            risk: GREEN
+          - option: 'Private cloud (example: Red Hat OpenStack Platform)'
+            order: 3
+            risk: GREEN
+          - option: 'Public cloud provider (examples: Amazon Web Services, Microsoft Azure, Google Cloud Platform)'
+            order: 4
+            risk: GREEN
+          - option: 'Platform as a service (examples: Heroku, Force.com, Google App Engine)'
+            order: 5
+            risk: AMBER
+          - option: Other. Specify in the comments field
+            order: 7
+            risk: AMBER
+          - option: Hybrid cloud (public and private cloud providers)
+            order: 6
+            risk: GREEN
+      - name: "CONTAINERS"
+        order: 6
+        question: How mature is the containerization process, if any?
+        description: If the team has used containers in the past, how was it done?
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Application runs in a container on a laptop or desktop
+            order: 1
+            risk: RED
+          - option: Some experience with containers but not yet fully defined
+            order: 3
+            risk: AMBER
+          - option: 'Proficient with containers and container platforms (examples: Swarm, Kubernetes)'
+            order: 4
+            risk: GREEN
+          - option: Application containerization has not yet been attempted
+            order: 5
+            risk: GREEN
+      - name: "SECURITY"
+        order: 3
+        question: How does the application acquire security keys or certificates?
+        description: How does the application retrieve credentials, keys, or certificates? External systems are runtime dependencies.
+        options:
+          - option: Unknown
+            order: 0
+            risk: UNKNOWN
+          - option: Hardware security modules or encryption devices
+            order: 1
+            risk: RED
+          - option: Keys/certificates bound to IP addresses and generated at runtime for each application instance
+            order: 2
+            risk: RED
+          - option: Keys/certificates compiled into the application
+            order: 3
+            risk: AMBER
+          - option: Loaded from a shared disk
+            order: 4
+            risk: AMBER
+          - option: 'Retrieved from an external server (examples: HashiCorp Vault, CyberArk Conjur)'
+            order: 5
+            risk: AMBER
+          - option: Loaded from files
+            order: 6
+            risk: GREEN
+          - option: Not required
+            order: 7
+            risk: GREEN
