@@ -1,0 +1,64 @@
+categories:
+  - title: Bridgekeeper Questions
+    order: 0
+    questions:
+      - name: NAMES
+        order: 0
+        question: What... is your name?
+        description: What is the name of the knight being quizzed?
+        options:
+          - option: Sir Lancelot of Camelot
+            order: 0
+            risk: GREEN
+          - option: Sir Robin of Camelot
+            order: 1
+            risk: AMBER
+          - option: Sir Gallahad of Camelot
+            order: 2
+            risk: RED
+          - option: Arthur, King of the Britons
+            order: 3
+            risk: UNKNOWN
+      - name: QUESTS
+        order: 1
+        question: What... is your quest?
+        description: What is the quest that the knight is on?
+        options:
+          - option: I seek the grail.
+            order: 0
+            risk: GREEN
+          - option: To cross this bridge.
+            order: 1
+            risk: RED
+      - name: SWALLOWS
+        order: 2
+        question: What... is the air-speed velocity of an unladen swallow?
+        description: Well?
+        options:
+          - option: African or European?
+            order: 0
+            risk: GREEN
+          - option: Huh? I… I don’t know that.
+            order: 1
+            risk: RED
+  - title: More Bridgekeeper Questions
+    order: 1
+    questions:
+      - name: COLORS
+        order: 0
+        question: What... is your favorite color?
+        description: What is the knight's favorite color?
+        options:
+          - option: Green
+            order: 0
+            risk: GREEN
+          - option: Yellow
+            order: 1
+            risk: AMBER
+          - option: Blue. No, yellow!
+            order: 2
+            risk: RED
+          - option: Blue
+            order: 3
+            risk: UNKNOWN
+
