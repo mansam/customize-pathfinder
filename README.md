@@ -2,7 +2,7 @@
 
 ## Intro
 
-This tool facilitates customization the Pathfinder questionnaire by taking an input questionnaire described in YAML
+This tool facilitates customizing the Pathfinder questionnaire by taking an input questionnaire described in YAML
 and generating a SQL migration. This migration can then be built into a custom Pathfinder image and used to replace
 the one deployed by the Konveyor operator. The migration will mark the old questions as deleted while leaving them
 in place so that they can continue to be referenced by any assessments that had been made with the old questionnaire.
